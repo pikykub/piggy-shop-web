@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Piggy Shop Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { margin: 0; background: #1a1a1a; color: white; font-family: sans-serif; }
+        /* แบนเนอร์ที่เปลี่ยนรูปได้ */
+        .banner { width: 100%; height: 200px; background-size: cover; background-position: center; }
+        
+        /* สีชื่อแอดมิน (ทอง) */
+        .name-admin {
+            font-weight: bold;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        /* สีชื่อลูกค้า (ฟ้าขาว) */
+        .name-customer {
+            font-weight: bold;
+            background: linear-gradient(to right, #add8e6, #ffffff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* เมนูหลังบ้านแอดมิน */
+        #admin-panel { display: none; padding: 15px; border: 1px solid gold; margin: 10px; }
+    </style>
+</head>
+<body>
+
+<div id="main-banner" class="banner" style="background-image: url('https://via.placeholder.com/800x200');"></div>
+
+<div id="content">
+    <h1>ยินดีต้อนรับสู่ Piggy Shop</h1>
+    <p>สถานะของคุณ: <span id="user-display">กำลังโหลด...</span></p>
+</div>
+
+<div id="admin-panel">
+    <h3>หลังบ้านแอดมิน</h3>
+    <button onclick="updateBanner()">เปลี่ยนรูปแบนเนอร์</button>
+    <button onclick="changeSnowColor('#fff')">เปลี่ยนหิมะเป็นสีขาว</button>
+    <button onclick="changeSnowColor('#ff0000')">เปลี่ยนหิมะเป็นสีแดง</button>
+</div>
+
+<script>
+    // สมมติสถานะ (ในอนาคตจะดึงจาก Firebase)
+    let userRole = 'super_admin'; // ลองเปลี่ยนเป็น 'customer' เพื่อดูความต่าง
+
+    if(userRole === 'super_admin') {
+        document.getElementById('admin-panel').style.display = 'block';
+        document.getElementById('user-display').innerHTML = '<span class="name-admin">Admin หมวย</span>';
+    } else {
+        document.getElementById('user-display').innerHTML = '<span class="name-customer">ลูกค้าผู้ใช้งาน</span>';
+    }
+
+    function updateBanner() {
+        const url = prompt("ใส่ลิงก์รูปภาพใหม่:");
+        if(url) document.getElementById('main-banner').style.position = "center";
+        if(url) document.getElementById('main-banner').style.backgroundImage = `url('${url}')`;
+    }
+</script>
+</body>
+</html>
