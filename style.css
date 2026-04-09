@@ -1,0 +1,85 @@
+/* style.css - ฉบับเก๋ๆ ไม่มีอีโมจิ อิงตาม 4tunez.shop */
+
+/* โหลด Font Awesome สำหรับไอคอน */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; } /* ใช้ฟอนต์ Kanit ให้ดูทันสมัย */
+
+body { background-color: #0d0d0d; color: #ffffff; padding-bottom: 50px; }
+
+/* --- Header --- */
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 20px; background-color: #0d0d0d;
+    border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; z-index: 100;
+}
+.brand-name { font-size: 1.1rem; font-weight: bold; }
+.header-icons { display: flex; gap: 15px; align-items: center; }
+.icon-btn {
+    background: none; border: none; color: #888;
+    font-size: 1.1rem; cursor: pointer; padding: 5px; transition: 0.3s;
+}
+.icon-btn:hover { color: white; }
+.user-avatar {
+    width: 35px; height: 35px; background-color: #333;
+    border-radius: 50%; display: flex; justify-content: center;
+    align-items: center; color: #fff; cursor: pointer; border: 1px solid #444;
+}
+
+/* --- Stats Cards --- */
+.stats-container { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.stat-card {
+    background-color: #141414; border: 1px solid #1a1a1a;
+    border-radius: 12px; padding: 20px; position: relative;
+}
+.stat-label { color: #888; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+.stat-value { font-size: 1.6rem; font-weight: bold; margin-bottom: 5px; color: #fff; }
+.stat-unit { color: #888; font-size: 0.8rem; }
+.stat-icon { position: absolute; top: 15px; right: 15px; color: #222; font-size: 1rem; }
+
+/* --- Login Modal (หน้าจอเข้าสู่ระบบ) --- */
+.modal-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: 0.3s;
+}
+.modal-backdrop.show { opacity: 1; pointer-events: auto; }
+
+.login-card {
+    background-color: #111; border: 1px solid #1a1a1a;
+    width: 90%; max-width: 400px; border-radius: 16px; padding: 30px;
+    text-align: center; transform: scale(0.9); transition: 0.3s;
+}
+.modal-backdrop.show .login-card { transform: scale(1); }
+
+.login-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 10px; }
+.login-subtitle { color: #888; font-size: 0.9rem; margin-bottom: 30px; }
+
+/* ปุ่ม Google Login สีดำแบบเก๋ๆ */
+.btn-google {
+    width: 100%; background-color: #1a1a1a; color: white;
+    border: 1px solid #333; padding: 12px; border-radius: 8px;
+    font-weight: bold; cursor: pointer; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: 0.3s; margin-bottom: 20px;
+}
+.btn-google:hover { background-color: #222; border-color: #444; }
+.btn-google i { font-size: 1.1rem; }
+
+.divider {
+    display: flex; align-items: center; color: #444;
+    font-size: 0.8rem; margin-bottom: 20px;
+}
+.divider::before, .divider::after {
+    content: ""; flex: 1; height: 1px; background-color: #1a1a1a; margin: 0 10px;
+}
+
+.guest-text { color: #888; font-size: 0.8rem; }
+.guest-link { color: #fff; text-decoration: none; font-weight: bold; margin-left: 5px; }
+
+/* ยศชื่อสีไล่ระดับ (ตามบรีฟแรก) */
+.name-admin {
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;
+}
