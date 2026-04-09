@@ -9,7 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
-        body { background-color: #080808; color: #ffffff; }
+        body { background-color: #080808; color: #ffffff; overflow-x: hidden; }
 
         /* --- Header --- */
         header {
@@ -18,76 +18,56 @@
             border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; z-index: 1000;
         }
         .brand { font-weight: 600; font-size: 1.2rem; letter-spacing: 1px; }
-        .header-btns { display: flex; gap: 15px; align-items: center; }
+        .header-btns { display: flex; gap: 15px; }
         .circle-btn {
             width: 40px; height: 40px; border-radius: 50%; border: 1px solid #222;
             background: #111; color: #888; display: flex; align-items: center;
             justify-content: center; cursor: pointer; transition: 0.3s;
         }
-        .circle-btn:hover { border-color: #fff; color: #fff; }
 
-        /* --- Banner Section (อิงจากภาพที่ 2-3 แต่ปรับสไตล์) --- */
+        /* --- Banner Section (เป๊ะตามภาพ 2-3 แต่ไม่ก๊อป) --- */
         .hero-banner {
-            position: relative; padding: 40px 20px;
-            background: linear-gradient(45deg, #0f0f0f 25%, #151515 25%, #151515 50%, #0f0f0f 50%, #0f0f0f 75%, #151515 75%, #151515 100%);
-            background-size: 40px 40px; /* ลายตารางแบบจางๆ ไม่ก๊อปเป๊ะ */
+            position: relative; padding: 60px 20px;
+            background-color: #080808;
+            /* ลายตาราง Grid แบบในรูปตัวอย่าง */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 45px 45px;
             border-bottom: 1px solid #1a1a1a;
         }
-        .hero-content h1 { font-size: 1.6rem; margin-bottom: 10px; color: #fff; }
-        .hero-content p { color: #888; font-size: 0.85rem; line-height: 1.6; max-width: 500px; margin-bottom: 25px; }
+        .hero-content h1 { font-size: 1.8rem; margin-bottom: 15px; color: #fff; }
+        .hero-content p { color: #888; font-size: 0.9rem; max-width: 500px; margin-bottom: 30px; line-height: 1.6; }
         
         .hero-btns { display: flex; gap: 10px; }
         .btn-white {
             background: #fff; color: #000; border: none; padding: 12px 25px;
-            border-radius: 10px; font-weight: bold; cursor: pointer;
-            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+            border-radius: 12px; font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
         }
-        .btn-white:hover { background: #e0e0e0; transform: translateY(-2px); }
+        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
 
-        /* --- Promotion Card (ภาพสีชมพู/ม่วง) --- */
-        .promo-card {
-            margin: 20px; background: linear-gradient(90deg, #1a0b1a 0%, #0d0d0d 100%);
-            border-radius: 15px; border: 1px solid #331a33; overflow: hidden;
-            display: flex; align-items: center; padding: 20px; position: relative;
-        }
-        .promo-img { width: 100px; height: 100px; border-radius: 10px; object-fit: cover; }
-        .promo-text { margin-left: 20px; }
-        .promo-text h2 { font-size: 1.1rem; color: #ff66cc; }
-        .promo-text p { color: #888; font-size: 0.8rem; }
-
-        /* --- Login Modal --- */
+        /* --- Auth Modal --- */
         .modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
             display: none; align-items: center; justify-content: center; z-index: 2000;
         }
         .modal.active { display: flex; }
         .auth-box {
             background: #111; border: 1px solid #222; width: 90%; max-width: 400px;
-            padding: 30px; border-radius: 20px;
+            padding: 30px; border-radius: 20px; text-align: center;
         }
-        .auth-box h2 { text-align: center; margin-bottom: 25px; font-weight: 600; }
-        
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 8px; }
         .input-group input {
-            width: 100%; background: #080808; border: 1px solid #222;
-            padding: 12px; border-radius: 10px; color: #fff; outline: none;
-        }
-        .input-group input:focus { border-color: #444; }
-
-        .btn-primary {
-            width: 100%; background: #fff; color: #000; border: none;
-            padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer;
-            margin-top: 10px;
+            width: 100%; background: #000; border: 1px solid #222;
+            padding: 14px; border-radius: 12px; color: #fff; outline: none;
         }
         .google-btn {
             width: 100%; background: #1a1a1a; color: #fff; border: 1px solid #333;
-            padding: 12px; border-radius: 10px; cursor: pointer; margin-top: 15px;
+            padding: 12px; border-radius: 12px; cursor: pointer; margin-top: 15px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-
-        .toggle-auth { text-align: center; margin-top: 20px; color: #666; font-size: 0.85rem; }
-        .toggle-auth span { color: #fff; cursor: pointer; text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -95,7 +75,6 @@
     <header>
         <div class="brand">PIGGY SHOP</div>
         <div class="header-btns">
-            <div class="circle-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
             <div class="circle-btn" id="authTrigger"><i class="fa-solid fa-user"></i></div>
         </div>
     </header>
@@ -103,48 +82,39 @@
     <section class="hero-banner">
         <div class="hero-content">
             <h1>ยินดีต้อนรับสู่ Piggy Shop</h1>
-            <p>ปล่อยเช่าเว็บคุณภาพเยี่ยม ระบบอัตโนมัติ 24 ชม. ปลอดภัย มั่นใจได้ 100%</p>
+            <p>แหล่งรวมไอดีเกมและบริการพรีเมียม ระบบอัตโนมัติ 24 ชม. ปลอดภัย มั่นใจได้ 100%</p>
             <div class="hero-btns">
-                <button class="btn-white"><i class="fa-solid fa-cart-shopping"></i> เลือกดูสินค้า</button>
+                <button class="btn-white"><i class="fa-solid fa-bag-shopping"></i> เลือกดูสินค้า</button>
                 <div class="circle-btn"><i class="fa-solid fa-info"></i></div>
             </div>
         </div>
     </section>
 
-    <div class="promo-card">
-        <img src="https://via.placeholder.com/100/ff00ff" class="promo-img" alt="promo">
-        <div class="promo-text">
-            <h2>STEAM OFFLINE</h2>
-            <p>เริ่มเพียง 39.00 บาท เท่านั้น!</p>
-        </div>
-    </div>
-
     <div class="modal" id="authModal">
         <div class="auth-box">
-            <h2 id="modalTitle">เข้าสู่ระบบ</h2>
+            <h2 id="modalTitle" style="margin-bottom: 20px;">เข้าสู่ระบบ</h2>
             
-            <div id="emailAuthForm">
-                <div class="input-group">
-                    <label>ชื่อผู้ใช้งาน หรือ อีเมล</label>
-                    <input type="text" id="authEmail" placeholder="username หรือ email">
-                </div>
-                <div class="input-group">
-                    <label>รหัสผ่าน</label>
-                    <input type="password" id="authPassword" placeholder="password">
-                </div>
-                <button class="btn-primary" id="emailActionBtn">ยืนยัน</button>
+            <div class="input-group">
+                <label>ชื่อผู้ใช้งาน (Username)</label>
+                <input type="text" id="authUser" placeholder="ใส่ Username ของคุณ">
+            </div>
+            <div class="input-group">
+                <label>รหัสผ่าน (Password)</label>
+                <input type="password" id="authPass" placeholder="ใส่รหัสผ่าน">
             </div>
 
-            <div style="text-align:center; margin: 15px 0; color:#444;">หรือ</div>
-
+            <button class="btn-white" style="width: 100%; justify-content: center;" id="emailActionBtn">ดำเนินการต่อ</button>
+            
+            <div style="margin: 20px 0; color: #333;">หรือ</div>
+            
             <button class="google-btn" id="googleBtn">
-                <i class="fa-brands fa-google"></i> ดำเนินการด้วย Google
+                <i class="fa-brands fa-google"></i> เข้าสู่ระบบด้วย Google
             </button>
 
-            <p class="toggle-auth">
-                <span id="toggleText" onclick="toggleAuthMode()">ยังไม่มีบัญชี? สมัครสมาชิก</span>
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #666;">
+                <span id="toggleText" style="color: #fff; cursor: pointer; text-decoration: underline;" onclick="toggleAuth()">ยังไม่มีบัญชี? สมัครสมาชิก</span>
             </p>
-            <p style="text-align:center; margin-top:10px;"><span onclick="closeModal()" style="color:#444; cursor:pointer; font-size:0.8rem;">ปิดหน้าต่าง</span></p>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: #444; cursor: pointer;" onclick="closeModal()">ปิดหน้าต่าง</p>
         </div>
     </div>
 
@@ -152,10 +122,10 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // --- วาง Firebase Config ของหมวยตรงนี้ ---
+        // --- Firebase Config ที่คุณหมวยให้มา (ใส่ให้แล้วค่ะ!) ---
         const firebaseConfig = {
-            apiKey: "AIzaSyCIdWuqnSWn1xc06emUD2onqvLeXxUNODg",aut       
-            hDomain: "piggy-rentel.firebaseapp.com",
+            apiKey: "AIzaSyCIdWuqnSWn1xc06emUD2onqvLeXxUNODg",
+            authDomain: "piggy-rentel.firebaseapp.com",
             projectId: "piggy-rentel",
             storageBucket: "piggy-rentel.firebasestorage.app",
             messagingSenderId: "142773345882",
@@ -167,48 +137,53 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        let isSignUpMode = false;
+        let isSignUp = false;
 
-        // UI Toggles
-        window.toggleAuthMode = () => {
-            isSignUpMode = !isSignUpMode;
-            document.getElementById('modalTitle').innerText = isSignUpMode ? "สมัครสมาชิก" : "เข้าสู่ระบบ";
-            document.getElementById('toggleText').innerText = isSignUpMode ? "มีบัญชีอยู่แล้ว? เข้าสู่ระบบ" : "ยังไม่มีบัญชี? สมัครสมาชิก";
+        // ฟังก์ชันสลับโหมด สมัคร/ล็อกอิน
+        window.toggleAuth = () => {
+            isSignUp = !isSignUp;
+            document.getElementById('modalTitle').innerText = isSignUp ? "สมัครสมาชิก" : "เข้าสู่ระบบ";
+            document.getElementById('toggleText').innerText = isSignUp ? "มีบัญชีอยู่แล้ว? เข้าสู่ระบบ" : "ยังไม่มีบัญชี? สมัครสมาชิก";
         };
 
+        // เปิด-ปิด Modal
         document.getElementById('authTrigger').onclick = () => document.getElementById('authModal').classList.add('active');
         window.closeModal = () => document.getElementById('authModal').classList.remove('active');
 
-        // Email & Password Auth (Username)
+        // ระบบสมัคร/ล็อกอินด้วย Username (แปลงเป็น Email จำลองเพื่อให้ Firebase ยอมรับ)
         document.getElementById('emailActionBtn').onclick = async () => {
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
+            const user = document.getElementById('authUser').value;
+            const pass = document.getElementById('authPass').value;
+            
+            // Firebase บังคับต้องมีรูปแบบ Email ดังนั้นเราจะเติม @piggy.com ให้ Username อัตโนมัติค่ะ
+            const fakeEmail = user.includes('@') ? user : `${user}@piggy.com`;
 
             try {
-                if (isSignUpMode) {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                    alert("สมัครสมาชิกสำเร็จ!");
+                if (isSignUp) {
+                    await createUserWithEmailAndPassword(auth, fakeEmail, pass);
+                    alert("ยินดีด้วยค่ะ! สมัครสมาชิกสำเร็จ");
                 } else {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    alert("เข้าสู่ระบบแล้ว");
+                    await signInWithEmailAndPassword(auth, fakeEmail, pass);
+                    alert("เข้าสู่ระบบสำเร็จ!");
                 }
                 closeModal();
             } catch (error) {
-                alert("ข้อผิดพลาด: " + error.message);
+                alert("เกิดข้อผิดพลาด: " + error.message);
             }
         };
 
-        // Google Login (ทำงานจริง)
+        // ระบบ Google Login (ใช้งานได้จริง)
         document.getElementById('googleBtn').onclick = async () => {
             try {
                 await signInWithPopup(auth, provider);
+                alert("ล็อกอินด้วย Google สำเร็จ!");
                 closeModal();
             } catch (error) {
                 alert("Google Login Error: " + error.message);
             }
         };
 
-        // Check Login State
+        // เช็กสถานะว่าล็อกอินหรือยัง
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 document.getElementById('authTrigger').innerHTML = `<img src="${user.photoURL || 'https://via.placeholder.com/40'}" style="width:100%; border-radius:50%;">`;
