@@ -1,63 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-    <title>Piggy Shop Rental</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pimpaw-เกมสโตร์ (Clone)</title>
     <style>
-        body { margin: 0; background: #1a1a1a; color: white; font-family: sans-serif; }
-        /* แบนเนอร์ที่เปลี่ยนรูปได้ */
-        .banner { width: 100%; height: 200px; background-size: cover; background-position: center; }
-        
-        /* สีชื่อแอดมิน (ทอง) */
-        .name-admin {
-            font-weight: bold;
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        /* --- CSS Reset & Core Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { background-color: #000000; color: #ffffff; padding-bottom: 50px; }
+
+        /* --- Header (แถบบนสุด) --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; background-color: #000000;
+            border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100;
         }
-        
-        /* สีชื่อลูกค้า (ฟ้าขาว) */
-        .name-customer {
-            font-weight: bold;
-            background: linear-gradient(to right, #add8e6, #ffffff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .brand-name { font-size: 1.2rem; font-weight: bold; }
+        .header-icons { display: flex; gap: 15px; align-items: center; }
+        .icon-btn {
+            background: none; border: none; color: white;
+            font-size: 1.2rem; cursor: pointer; padding: 5px;
+        }
+        .user-avatar {
+            width: 35px; height: 35px; background-color: #ffffff;
+            border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; color: #000000; font-weight: bold; cursor: pointer;
         }
 
-        /* เมนูหลังบ้านแอดมิน */
-        #admin-panel { display: none; padding: 15px; border: 1px solid gold; margin: 10px; }
+        /* --- Hero Section (ส่วนต้อนรับ) --- */
+        .hero { padding: 30px 20px; border-bottom: 1px solid #222; }
+        .hero-title { font-size: 1.5rem; margin-bottom: 10px; }
+        .hero-desc { color: #888; font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px; }
+        .btn-group { display: flex; gap: 10px; }
+        .btn-white {
+            background-color: #ffffff; color: #000000;
+            border: none; padding: 10px 20px; border-radius: 8px;
+            font-weight: bold; cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-outline {
+            background: none; border: 1px solid #444; color: #ffffff;
+            width: 40px; height: 40px; border-radius: 8px;
+            display: flex; justify-content: center; align-items: center; cursor: pointer;
+        }
+
+        /* --- Stats Card Section (ส่วนสถิติ) --- */
+        .stats-container { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .stat-card {
+            background-color: #111111; border: 1px solid #222;
+            border-radius: 12px; padding: 20px; position: relative;
+        }
+        .stat-label { color: #888; font-size: 0.8rem; margin-bottom: 15px; display: block; }
+        .stat-value { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
+        .stat-unit { color: #888; font-size: 0.9rem; }
+        .stat-icon { position: absolute; top: 15px; right: 15px; color: #444; font-size: 1.2rem; }
+
+        /* --- Category Section (หมวดหมู่สินค้า) --- */
+        .section-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 20px; margin-top: 20px;
+        }
+        .section-title { font-size: 1.1rem; font-weight: bold; }
+        .see-all { color: #888; text-decoration: none; font-size: 0.9rem; }
+
+        .category-card {
+            background-color: #111111; border: 1px solid #222;
+            border-radius: 12px; margin: 15px 20px; padding: 15px;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .cat-img { width: 60px; height: 60px; background-color: #222; border-radius: 8px; }
+        .cat-info h4 { font-size: 1rem; margin-bottom: 5px; }
+        .cat-info p { color: #888; font-size: 0.8rem; }
+
+        /* --- User Menu Popup (เมนูเมื่อกดรูปคน) --- */
+        .user-menu-backdrop {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7); z-index: 1000;
+            display: none; /* ซ่อนไว้ก่อน */
+        }
+        .user-menu {
+            position: fixed; top: 70px; right: 20px;
+            width: 250px; background-color: #111111; border: 1px solid #222;
+            border-radius: 12px; padding: 15px; z-index: 1001;
+            display: none; /* ซ่อนไว้ก่อน */
+        }
+        .menu-header { border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 10px; }
+        .menu-title { font-size: 0.9rem; color: #888; margin-bottom: 5px; }
+        .menu-username { font-weight: bold; font-size: 1rem; }
+        .menu-balance { color: #888; font-size: 0.8rem; margin-top: 5px; }
+        
+        .menu-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 0; color: #ffffff; text-decoration: none;
+            font-size: 0.9rem; border-bottom: 1px solid #1a1a1a;
+        }
+        .menu-item:last-child { border-bottom: none; color: #ff4444; } /* สีแดงสำหรับออกจากระบบ */
+        .menu-icon { width: 20px; text-align: center; color: #444; }
+
     </style>
 </head>
 <body>
 
-<div id="main-banner" class="banner" style="background-image: url('https://via.placeholder.com/800x200');"></div>
+    <header>
+        <div class="brand-name">Pimpaw-เกมสโตร์</div>
+        <div class="header-icons">
+            <button class="icon-btn">🔍</button> <button class="icon-btn">☀️</button>
+            <div class="user-avatar" onclick="toggleUserMenu()">P</div> 
+        </div>
+    </header>
 
-<div id="content">
-    <h1>ยินดีต้อนรับสู่ Piggy Shop</h1>
-    <p>สถานะของคุณ: <span id="user-display">กำลังโหลด...</span></p>
-</div>
+    <section class="hero">
+        <h2 class="hero-title">ยินดีต้อนรับสู่ร้าน Pimpaw-เกมสโตร์</h2>
+        <p class="hero-desc">Pimpaw - ร้านขายบัญชีเกมออฟไลน์ Steam ราคาถูก เล่นได้ 100% มีรับประกัน! | ติดต่อแอดมินได้ที่เพจ PimPaw-เกมสโตร์</p>
+        <div class="btn-group">
+            <button class="btn-white">🛍️ เลือกดูสินค้า</button> <button class="btn-outline">i</button>
+        </div>
+    </section>
 
-<div id="admin-panel">
-    <h3>หลังบ้านแอดมิน</h3>
-    <button onclick="updateBanner()">เปลี่ยนรูปแบนเนอร์</button>
-    <button onclick="changeSnowColor('#fff')">เปลี่ยนหิมะเป็นสีขาว</button>
-    <button onclick="changeSnowColor('#ff0000')">เปลี่ยนหิมะเป็นสีแดง</button>
-</div>
+    <section class="stats-container">
+        <div class="stat-card">
+            <span class="stat-icon">👤</span>
+            <span class="stat-label">ผู้ใช้ทั้งหมด</span>
+            <div class="stat-value">212</div>
+            <span class="stat-unit">คน</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-icon">🛍️</span>
+            <span class="stat-label">สินค้าทั้งหมด</span>
+            <div class="stat-value">239</div>
+            <span class="stat-unit">รายการ</span>
+        </div>
+    </section>
 
-<script>
-    // สมมติสถานะ (ในอนาคตจะดึงจาก Firebase)
-    let userRole = 'super_admin'; // ลองเปลี่ยนเป็น 'customer' เพื่อดูความต่าง
+    <section>
+        <div class="section-header">
+            <h3 class="section-title">หมวดหมู่แนะนำ</h3>
+            <a href="#" class="see-all">ดูเพิ่มเติม ></a>
+        </div>
 
-    if(userRole === 'super_admin') {
-        document.getElementById('admin-panel').style.display = 'block';
-        document.getElementById('user-display').innerHTML = '<span class="name-admin">Admin หมวย</span>';
-    } else {
-        document.getElementById('user-display').innerHTML = '<span class="name-customer">ลูกค้าผู้ใช้งาน</span>';
-    }
+        <div class="category-card">
+            <div class="cat-img"></div> <div class="cat-info">
+                <h4>Steam Offline</h4>
+                <p>สินค้าทั้งหมด 239 รายการ</p>
+                <p>10.00 - 999.99</p>
+            </div>
+        </div>
+    </section>
 
-    function updateBanner() {
-        const url = prompt("ใส่ลิงก์รูปภาพใหม่:");
-        if(url) document.getElementById('main-banner').style.position = "center";
-        if(url) document.getElementById('main-banner').style.backgroundImage = `url('${url}')`;
-    }
-</script>
+    <div id="menu-backdrop" class="user-menu-backdrop" onclick="toggleUserMenu()"></div>
+    <div id="user-menu" class="user-menu">
+        <div class="menu-header">
+            <p class="menu-title">โปรดอ่าน</p>
+            <p class="menu-username">👤 MEMBER</p>
+            <p class="menu-balance">ยอดเงิน: ฿0.00</p>
+        </div>
+        <a href="#" class="menu-item"><span class="menu-icon">⚙️</span> จัดการโปรไฟล์</a>
+        <a href="#" class="menu-item"><span class="menu-icon">📦</span> สถานะคำสั่งซื้อ</a>
+        <a href="#" class="menu-item"><span class="menu-icon">💰</span> เติมเงิน</a>
+        <a href="#" class="menu-item"><span class="menu-icon">🕒</span> ประวัติการเติมเงิน</a>
+        <a href="#" class="menu-item"><span class="menu-icon">📞</span> ติดต่อเรา</a>
+        <a href="#" class="menu-item"><span class="menu-icon">🚪</span> ออกจากระบบ</a>
+    </div>
+
+    <script>
+        // ฟังก์ชันเปิด-ปิดเมนูผู้ใช้
+        function toggleUserMenu() {
+            const menu = document.getElementById('user-menu');
+            const backdrop = document.getElementById('menu-backdrop');
+            
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                backdrop.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+                backdrop.style.display = 'block';
+            }
+        }
+    </script>
+
 </body>
 </html>
