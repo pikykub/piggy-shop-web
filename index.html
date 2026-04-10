@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>PeachWeb - Website Rental</title>
+<title>PeachWeb</title>
 
 <style>
 
 body{
-margin:0;
+background:#0d0d0d;
+color:white;
 font-family:sans-serif;
-background:linear-gradient(135deg,#ffd6ec,#d6f0ff,#ffffff);
+margin:0;
 }
 
 /* navbar */
@@ -17,138 +18,77 @@ background:linear-gradient(135deg,#ffd6ec,#d6f0ff,#ffffff);
 .navbar{
 display:flex;
 justify-content:space-between;
+padding:15px;
+background:#000;
 align-items:center;
-background:white;
-padding:15px 30px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 .logo{
-font-size:22px;
+font-size:20px;
 font-weight:bold;
-color:#ff7ac7;
 }
 
-/* buttons */
-
-.btn{
-background:#ff9ed6;
-border:none;
-padding:10px 20px;
-border-radius:10px;
+.icon{
+background:#1a1a1a;
+width:35px;
+height:35px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
 cursor:pointer;
-color:white;
-margin:5px;
 }
 
-.btn:hover{
-background:#ff7ac7;
+/* hero */
+
+.hero{
+padding:40px;
+background:linear-gradient(120deg,#ff2ea6,#6b5cff);
 }
 
-/* banner */
-
-.banner{
-width:100%;
-height:300px;
-object-fit:cover;
-}
-
-/* rainbow admin */
-
-.admin-name{
-font-weight:bold;
-background: linear-gradient(90deg,
-#ffb3ba,
-#ffd6a5,
-#fdffb6,
-#caffbf,
-#a0c4ff,
-#bdb2ff,
-#ffc6ff);
-
-background-size:400%;
--webkit-background-clip:text;
-color:transparent;
-
-animation:rainbow 5s linear infinite;
-}
-
-@keyframes rainbow{
-0%{background-position:0%}
-100%{background-position:400%}
-}
-
-/* customer name */
-
-.customer-name{
-background:linear-gradient(90deg,#d6f0ff,#ffffff);
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s infinite;
-}
-
-@keyframes shine{
-0%{opacity:0.7}
-50%{opacity:1}
-100%{opacity:0.7}
+.hero h1{
+font-size:28px;
 }
 
 /* cards */
 
-.container{
-padding:40px;
-}
-
-.packages{
-display:flex;
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
 gap:20px;
-flex-wrap:wrap;
+padding:20px;
 }
 
 .card{
-background:white;
+background:#121212;
 padding:20px;
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-width:250px;
 }
 
-/* chat */
+/* products */
 
-.chatbox{
-background:white;
-padding:20px;
-border-radius:10px;
-height:250px;
-overflow:auto;
-margin-bottom:10px;
-}
-
-input{
+.product{
+background:#111;
+border-radius:15px;
 padding:10px;
-border-radius:8px;
-border:1px solid #ddd;
-margin:5px;
 }
 
-/* modal */
-
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
+.product img{
 width:100%;
-height:100%;
-background:rgba(0,0,0,0.4);
+border-radius:10px;
 }
 
-.modal-content{
+.buy{
 background:white;
-padding:30px;
-margin:100px auto;
-width:300px;
+border:none;
+padding:10px;
 border-radius:10px;
+width:100%;
+cursor:pointer;
+}
+
+.price{
+color:#00ff99;
 }
 
 </style>
@@ -156,121 +96,84 @@ border-radius:10px;
 
 <body>
 
-<!-- navbar -->
-
 <div class="navbar">
 
 <div class="logo">🍑 PeachWeb</div>
 
-<div>
-
-<span class="admin-name">Admin</span>
-
-<span class="customer-name">Customer</span>
-
-<button class="btn" onclick="openLogin()">Login</button>
-<button class="btn" onclick="openRegister()">Register</button>
-
+<div style="display:flex;gap:10px">
+<div class="icon">🔍</div>
+<div class="icon">⚙️</div>
+<div class="icon">👤</div>
 </div>
 
 </div>
 
-<!-- banner -->
+<div class="hero">
 
-<img id="banner" class="banner" src="https://picsum.photos/1200/300?1">
+<h1>ยินดีต้อนรับสู่ PeachWeb</h1>
+<p>ระบบปล่อยเช่าเว็บไซต์อัตโนมัติ</p>
 
-<!-- packages -->
+<button class="buy">เริ่มใช้งาน</button>
 
-<div class="container">
+</div>
 
-<h2>แพ็คเกจเช่าเว็บไซต์</h2>
-
-<div class="packages">
+<div class="grid">
 
 <div class="card">
+
+<h3>👥 ผู้ใช้ทั้งหมด</h3>
+
+<h1 id="users">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>🌐 เว็บไซต์ทั้งหมด</h3>
+
+<h1 id="sites">0</h1>
+
+</div>
+
+</div>
+
+<h2 style="padding-left:20px">แพ็คเกจเช่าเว็บไซต์</h2>
+
+<div class="grid">
+
+<div class="product">
+
+<img src="https://picsum.photos/300/200">
 
 <h3>7 วัน</h3>
 
-<p>เหมาะสำหรับทดลองใช้</p>
+<p class="price">49 บาท</p>
 
-<button class="btn">เช่า</button>
-<button class="btn" onclick="preview()">Preview</button>
+<button class="buy">เช่า</button>
 
 </div>
 
-<div class="card">
+<div class="product">
+
+<img src="https://picsum.photos/301/200">
 
 <h3>1 เดือน</h3>
 
-<p>เหมาะสำหรับธุรกิจ</p>
+<p class="price">149 บาท</p>
 
-<button class="btn">เช่า</button>
-<button class="btn" onclick="preview()">Preview</button>
+<button class="buy">เช่า</button>
 
 </div>
 
-<div class="card">
+<div class="product">
+
+<img src="https://picsum.photos/302/200">
 
 <h3>3 เดือน</h3>
 
-<p>คุ้มค่าที่สุด</p>
+<p class="price">349 บาท</p>
 
-<button class="btn">เช่า</button>
-<button class="btn" onclick="preview()">Preview</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- chat -->
-
-<div class="container">
-
-<h2>💬 PeachChat</h2>
-
-<div id="chat" class="chatbox"></div>
-
-<input id="msg" placeholder="พิมพ์ข้อความ">
-
-<button class="btn" onclick="sendMessage()">ส่ง</button>
-
-</div>
-
-<!-- login modal -->
-
-<div id="loginModal" class="modal">
-
-<div class="modal-content">
-
-<h3>Login</h3>
-
-<input placeholder="Email">
-
-<input type="password" placeholder="Password">
-
-<button class="btn">Login</button>
-
-</div>
-
-</div>
-
-<!-- register modal -->
-
-<div id="registerModal" class="modal">
-
-<div class="modal-content">
-
-<h3>Register</h3>
-
-<input placeholder="Email">
-
-<input placeholder="Nickname">
-
-<input type="password" placeholder="Password">
-
-<button class="btn">Register</button>
+<button class="buy">เช่า</button>
 
 </div>
 
@@ -278,77 +181,18 @@ border-radius:10px;
 
 <script>
 
-/* banner auto slide */
-
-const banners=[
-"https://picsum.photos/1200/300?1",
-"https://picsum.photos/1200/300?2",
-"https://picsum.photos/1200/300?3"
-]
-
-let i=0
+let users=120
+let sites=35
 
 setInterval(()=>{
 
-document.getElementById("banner").src=banners[i]
+users+=1
+sites+=1
 
-i++
+document.getElementById("users").innerText=users
+document.getElementById("sites").innerText=sites
 
-if(i>=banners.length)i=0
-
-},4000)
-
-/* chat */
-
-function sendMessage(){
-
-let msg=document.getElementById("msg").value
-
-if(msg=="")return
-
-let chat=document.getElementById("chat")
-
-chat.innerHTML+="<p>"+msg+"</p>"
-
-document.getElementById("msg").value=""
-
-chat.scrollTop=chat.scrollHeight
-
-}
-
-/* preview */
-
-function preview(){
-
-alert("Preview website example")
-
-}
-
-/* login */
-
-function openLogin(){
-
-document.getElementById("loginModal").style.display="block"
-
-}
-
-/* register */
-
-function openRegister(){
-
-document.getElementById("registerModal").style.display="block"
-
-}
-
-window.onclick=function(e){
-
-if(e.target.className=="modal"){
-
-e.target.style.display="none"
-
-}
-
-}
+},3000)
 
 </script>
 
