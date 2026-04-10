@@ -1,200 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>PeachWeb</title>
 
-<style>
+<link rel="stylesheet" href="style.css">
 
-body{
-background:#0d0d0d;
-color:white;
-font-family:sans-serif;
-margin:0;
-}
-
-/* navbar */
-
-.navbar{
-display:flex;
-justify-content:space-between;
-padding:15px;
-background:#000;
-align-items:center;
-}
-
-.logo{
-font-size:20px;
-font-weight:bold;
-}
-
-.icon{
-background:#1a1a1a;
-width:35px;
-height:35px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-}
-
-/* hero */
-
-.hero{
-padding:40px;
-background:linear-gradient(120deg,#ff2ea6,#6b5cff);
-}
-
-.hero h1{
-font-size:28px;
-}
-
-/* cards */
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-padding:20px;
-}
-
-.card{
-background:#121212;
-padding:20px;
-border-radius:15px;
-}
-
-/* products */
-
-.product{
-background:#111;
-border-radius:15px;
-padding:10px;
-}
-
-.product img{
-width:100%;
-border-radius:10px;
-}
-
-.buy{
-background:white;
-border:none;
-padding:10px;
-border-radius:10px;
-width:100%;
-cursor:pointer;
-}
-
-.price{
-color:#00ff99;
-}
-
-</style>
 </head>
 
 <body>
 
-<div class="navbar">
+<header class="navbar">
 
-<div class="logo">🍑 PeachWeb</div>
+<div class="logo">
+PeachWeb
+</div>
 
-<div style="display:flex;gap:10px">
-<div class="icon">🔍</div>
-<div class="icon">⚙️</div>
-<div class="icon">👤</div>
+<nav>
+
+<button class="nav-btn">Login</button>
+<button class="nav-btn">Register</button>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Website Rental Platform</h1>
+
+<p>
+Create and manage your own website instantly with automated deployment.
+</p>
+
+<button class="primary-btn">
+Start Now
+</button>
+
+</section>
+
+
+<section class="stats">
+
+<div class="stat-card">
+
+<h3>Total Users</h3>
+<h2 id="userCount">0</h2>
+
+</div>
+
+<div class="stat-card">
+
+<h3>Active Websites</h3>
+<h2 id="siteCount">0</h2>
+
+</div>
+
+</section>
+
+
+<section class="plans">
+
+<h2>Rental Plans</h2>
+
+<div class="plan-grid">
+
+<div class="plan-card">
+
+<h3>Starter</h3>
+
+<p>7 Days</p>
+
+<div class="price">
+49 THB
+</div>
+
+<button class="primary-btn">
+Rent Website
+</button>
+
+</div>
+
+
+<div class="plan-card">
+
+<h3>Standard</h3>
+
+<p>1 Month</p>
+
+<div class="price">
+149 THB
+</div>
+
+<button class="primary-btn">
+Rent Website
+</button>
+
+</div>
+
+
+<div class="plan-card">
+
+<h3>Professional</h3>
+
+<p>3 Months</p>
+
+<div class="price">
+349 THB
+</div>
+
+<button class="primary-btn">
+Rent Website
+</button>
+
 </div>
 
 </div>
 
-<div class="hero">
+</section>
 
-<h1>ยินดีต้อนรับสู่ PeachWeb</h1>
-<p>ระบบปล่อยเช่าเว็บไซต์อัตโนมัติ</p>
-
-<button class="buy">เริ่มใช้งาน</button>
-
-</div>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>👥 ผู้ใช้ทั้งหมด</h3>
-
-<h1 id="users">0</h1>
-
-</div>
-
-<div class="card">
-
-<h3>🌐 เว็บไซต์ทั้งหมด</h3>
-
-<h1 id="sites">0</h1>
-
-</div>
-
-</div>
-
-<h2 style="padding-left:20px">แพ็คเกจเช่าเว็บไซต์</h2>
-
-<div class="grid">
-
-<div class="product">
-
-<img src="https://picsum.photos/300/200">
-
-<h3>7 วัน</h3>
-
-<p class="price">49 บาท</p>
-
-<button class="buy">เช่า</button>
-
-</div>
-
-<div class="product">
-
-<img src="https://picsum.photos/301/200">
-
-<h3>1 เดือน</h3>
-
-<p class="price">149 บาท</p>
-
-<button class="buy">เช่า</button>
-
-</div>
-
-<div class="product">
-
-<img src="https://picsum.photos/302/200">
-
-<h3>3 เดือน</h3>
-
-<p class="price">349 บาท</p>
-
-<button class="buy">เช่า</button>
-
-</div>
-
-</div>
-
-<script>
-
-let users=120
-let sites=35
-
-setInterval(()=>{
-
-users+=1
-sites+=1
-
-document.getElementById("users").innerText=users
-document.getElementById("sites").innerText=sites
-
-},3000)
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
