@@ -3,192 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piggy Shop - Premium Store</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>เข้าสู่ระบบ | แพลตฟอร์มปล่อยเช่าเว็บ</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap');
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
-        body { background-color: #080808; color: #ffffff; overflow-x: hidden; }
-
-        /* --- Header --- */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 20px; background: rgba(8, 8, 8, 0.95);
-            border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; z-index: 1000;
-        }
-        .brand { font-weight: 600; font-size: 1.2rem; letter-spacing: 1px; }
-        .header-btns { display: flex; gap: 15px; }
-        .circle-btn {
-            width: 40px; height: 40px; border-radius: 50%; border: 1px solid #222;
-            background: #111; color: #888; display: flex; align-items: center;
-            justify-content: center; cursor: pointer; transition: 0.3s;
+        /* ตั้งค่าสีหลัก ดำ-ทอง */
+        :root {
+            --bg-color: #0d0d0d;
+            --container-bg: #1a1a1a;
+            --gold-primary: #D4AF37;
+            --gold-hover: #b5952f;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --input-bg: #262626;
         }
 
-        /* --- Banner Section (เป๊ะตามภาพ 2-3 แต่ไม่ก๊อป) --- */
-        .hero-banner {
-            position: relative; padding: 60px 20px;
-            background-color: #080808;
-            /* ลายตาราง Grid แบบในรูปตัวอย่าง */
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 45px 45px;
-            border-bottom: 1px solid #1a1a1a;
+        * {
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif; /* แนะนำให้ import ฟอนต์ Prompt จาก Google Fonts */
         }
-        .hero-content h1 { font-size: 1.8rem; margin-bottom: 15px; color: #fff; }
-        .hero-content p { color: #888; font-size: 0.9rem; max-width: 500px; margin-bottom: 30px; line-height: 1.6; }
-        
-        .hero-btns { display: flex; gap: 10px; }
-        .btn-white {
-            background: #fff; color: #000; border: none; padding: 12px 25px;
-            border-radius: 12px; font-weight: bold; cursor: pointer;
-            display: flex; align-items: center; gap: 10px; transition: 0.3s;
-        }
-        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
 
-        /* --- Auth Modal --- */
-        .modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-            display: none; align-items: center; justify-content: center; z-index: 2000;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
-        .modal.active { display: flex; }
-        .auth-box {
-            background: #111; border: 1px solid #222; width: 90%; max-width: 400px;
-            padding: 30px; border-radius: 20px; text-align: center;
+
+        .login-box {
+            background-color: var(--container-bg);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+            border: 1px solid #333;
         }
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 8px; }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-text h2 {
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+        }
+
+        .header-text p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
         .input-group input {
-            width: 100%; background: #000; border: 1px solid #222;
-            padding: 14px; border-radius: 12px; color: #fff; outline: none;
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--input-bg);
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: var(--text-main);
+            outline: none;
+            transition: border 0.3s;
         }
-        .google-btn {
-            width: 100%; background: #1a1a1a; color: #fff; border: 1px solid #333;
-            padding: 12px; border-radius: 12px; cursor: pointer; margin-top: 15px;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+
+        .input-group input:focus {
+            border-color: var(--gold-primary);
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: right;
+            color: var(--text-muted);
+            font-size: 0.85em;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password:hover {
+            color: var(--gold-primary);
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--gold-primary);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.85em;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #444;
+        }
+
+        .divider::before { margin-right: 10px; }
+        .divider::after { margin-left: 10px; }
+
+        .btn-google {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-weight: normal;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: border 0.3s, background 0.3s;
+        }
+
+        .btn-google:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-muted);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
+        .register-link a {
+            color: var(--text-main);
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="brand">PIGGY SHOP</div>
-        <div class="header-btns">
-            <div class="circle-btn" id="authTrigger"><i class="fa-solid fa-user"></i></div>
+    <div class="login-box">
+        <div class="header-text">
+            <h2>เข้าสู่ระบบ</h2>
+            <p>กรุณาเข้าสู่ระบบเพื่อใช้งานต่อ</p>
         </div>
-    </header>
 
-    <section class="hero-banner">
-        <div class="hero-content">
-            <h1>ยินดีต้อนรับสู่ Piggy Shop</h1>
-            <p>แหล่งรวมไอดีเกมและบริการพรีเมียม ระบบอัตโนมัติ 24 ชม. ปลอดภัย มั่นใจได้ 100%</p>
-            <div class="hero-btns">
-                <button class="btn-white"><i class="fa-solid fa-bag-shopping"></i> เลือกดูสินค้า</button>
-                <div class="circle-btn"><i class="fa-solid fa-info"></i></div>
-            </div>
+        <div class="input-group">
+            <label>ชื่อผู้ใช้ หรือ อีเมล</label>
+            <input type="text" placeholder="username หรือ user@gmail.com">
         </div>
-    </section>
 
-    <div class="modal" id="authModal">
-        <div class="auth-box">
-            <h2 id="modalTitle" style="margin-bottom: 20px;">เข้าสู่ระบบ</h2>
-            
-            <div class="input-group">
-                <label>ชื่อผู้ใช้งาน (Username)</label>
-                <input type="text" id="authUser" placeholder="ใส่ Username ของคุณ">
-            </div>
-            <div class="input-group">
-                <label>รหัสผ่าน (Password)</label>
-                <input type="password" id="authPass" placeholder="ใส่รหัสผ่าน">
-            </div>
+        <div class="input-group">
+            <label>รหัสผ่าน</label>
+            <input type="password" placeholder="password">
+        </div>
 
-            <button class="btn-white" style="width: 100%; justify-content: center;" id="emailActionBtn">ดำเนินการต่อ</button>
-            
-            <div style="margin: 20px 0; color: #333;">หรือ</div>
-            
-            <button class="google-btn" id="googleBtn">
-                <i class="fa-brands fa-google"></i> เข้าสู่ระบบด้วย Google
-            </button>
+        <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
 
-            <p style="margin-top: 20px; font-size: 0.85rem; color: #666;">
-                <span id="toggleText" style="color: #fff; cursor: pointer; text-decoration: underline;" onclick="toggleAuth()">ยังไม่มีบัญชี? สมัครสมาชิก</span>
-            </p>
-            <p style="margin-top: 15px; font-size: 0.8rem; color: #444; cursor: pointer;" onclick="closeModal()">ปิดหน้าต่าง</p>
+        <button class="btn-gold">เข้าสู่ระบบ</button>
+
+        <div class="divider">หรือ</div>
+
+        <button class="btn-google">
+            G เข้าสู่ระบบด้วย Google
+        </button>
+
+        <div class="register-link">
+            ยังไม่มีบัญชี? <a href="#">สมัครสมาชิก</a>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-        // --- Firebase Config ที่คุณหมวยให้มา (ใส่ให้แล้วค่ะ!) ---
-        const firebaseConfig = {
-            apiKey: "AIzaSyCIdWuqnSWn1xc06emUD2onqvLeXxUNODg",
-            authDomain: "piggy-rentel.firebaseapp.com",
-            projectId: "piggy-rentel",
-            storageBucket: "piggy-rentel.firebasestorage.app",
-            messagingSenderId: "142773345882",
-            appId: "1:142773345882:web:07d25324185c996bce0263",
-            measurementId: "G-CVQSBFHQ28"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-
-        let isSignUp = false;
-
-        // ฟังก์ชันสลับโหมด สมัคร/ล็อกอิน
-        window.toggleAuth = () => {
-            isSignUp = !isSignUp;
-            document.getElementById('modalTitle').innerText = isSignUp ? "สมัครสมาชิก" : "เข้าสู่ระบบ";
-            document.getElementById('toggleText').innerText = isSignUp ? "มีบัญชีอยู่แล้ว? เข้าสู่ระบบ" : "ยังไม่มีบัญชี? สมัครสมาชิก";
-        };
-
-        // เปิด-ปิด Modal
-        document.getElementById('authTrigger').onclick = () => document.getElementById('authModal').classList.add('active');
-        window.closeModal = () => document.getElementById('authModal').classList.remove('active');
-
-        // ระบบสมัคร/ล็อกอินด้วย Username (แปลงเป็น Email จำลองเพื่อให้ Firebase ยอมรับ)
-        document.getElementById('emailActionBtn').onclick = async () => {
-            const user = document.getElementById('authUser').value;
-            const pass = document.getElementById('authPass').value;
-            
-            // Firebase บังคับต้องมีรูปแบบ Email ดังนั้นเราจะเติม @piggy.com ให้ Username อัตโนมัติค่ะ
-            const fakeEmail = user.includes('@') ? user : `${user}@piggy.com`;
-
-            try {
-                if (isSignUp) {
-                    await createUserWithEmailAndPassword(auth, fakeEmail, pass);
-                    alert("ยินดีด้วยค่ะ! สมัครสมาชิกสำเร็จ");
-                } else {
-                    await signInWithEmailAndPassword(auth, fakeEmail, pass);
-                    alert("เข้าสู่ระบบสำเร็จ!");
-                }
-                closeModal();
-            } catch (error) {
-                alert("เกิดข้อผิดพลาด: " + error.message);
-            }
-        };
-
-        // ระบบ Google Login (ใช้งานได้จริง)
-        document.getElementById('googleBtn').onclick = async () => {
-            try {
-                await signInWithPopup(auth, provider);
-                alert("ล็อกอินด้วย Google สำเร็จ!");
-                closeModal();
-            } catch (error) {
-                alert("Google Login Error: " + error.message);
-            }
-        };
-
-        // เช็กสถานะว่าล็อกอินหรือยัง
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById('authTrigger').innerHTML = `<img src="${user.photoURL || 'https://via.placeholder.com/40'}" style="width:100%; border-radius:50%;">`;
-            }
-        });
-    </script>
 </body>
 </html>
